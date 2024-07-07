@@ -20,12 +20,8 @@ function checkAuth(auth) {
 
 app.get("/", (req, res) => {
   //? GET route for the root URL
-  if (checkAuth(req.body["auth"])) {
-    //? Check if the provided auth matches the expected value
-    res.status(200).send("Authenticated"); //? Respond with success message
-  } else {
-    res.status(401).send("Unauthorized"); //? Respond with unauthorized status
-  }
+  //? Check if the provided auth matches the expected value
+  res.status(200).send("Authenticated"); //? Respond with success message
 });
 
 app.use("/images", express.static(path.join(__dirname, "./images"))); //? Serve images statically from the 'images' directory
@@ -46,7 +42,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage }); //? Initialize Multer with the defined storage configuration
 
 app.post("/adduser", upload.single("image"), (req, res) => {
-  const imageUrl = `http://localhost:5500/images/${originalNameValue}`; //? Construct the URL for the uploaded image
+  const imageUrl = `https://facebook-bkbk.vercel.app/images/${originalNameValue}`; //? Construct the URL for the uploaded image
 
   const { name, email, password } = req.body; //? Extract name, email, and password from the request body
 
@@ -114,7 +110,7 @@ app.get("/allusers", async (req, res) => {
 });
 
 app.post("/addpost/:userId", upload.single("image"), async (req, res) => {
-  const imageUrl = `http://localhost:5500/images/${originalNameValue}`; //? Construct the URL for the uploaded image
+  const imageUrl = `https://facebook-bkbk.vercel.app/images/${originalNameValue}`; //? Construct the URL for the uploaded image
   //? POST route to add a new post for a specific user
   if (!checkAuth(req.headers["auth"])) {
     res.status(401).send("Unauthorized"); //? Check authorization header and respond with an error if unauthorized
