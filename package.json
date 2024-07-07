@@ -2,8 +2,13 @@
   "name": "facebookbk",
   "version": "1.0.0",
   "main": "index.js",
+
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
+  },
+
+  "engines": {
+    "node": "20.15.0"
   },
   "keywords": [],
   "author": "",
